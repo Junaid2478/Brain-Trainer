@@ -1,4 +1,4 @@
 # Brain-Trainer
 This is a brain trainer that generates random addition, subtraction, multiplication and division sums and tracks the correct and incorrect answers
 that are choosen, the user is timed 30 seconds to attempt as many questions as they can
-![brain trainer](https://user-images.githubusercontent.com/79209011/141219074-baf88365-3f90-4a1d-9799-3b76cecdde45.jpg)
+![brain trainer](https://user-images.githubusercontent.com/79209011/141400400-cd222874-d61c-4ae4-8b28-aa9e032eef1e.jpg)
