@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     TextView timerView;
     int points = 0;
     Button playAgainButton;
+    public String operator;
 
     public void playAgain (View view) {
 
@@ -71,29 +72,101 @@ public class MainActivity extends AppCompatActivity {
         int a = random.nextInt(21);
         int b = random.nextInt(21);
 
-        sumView.setText(Integer.toString(a) + " + " + Integer.toString(b));
-
         correctAnswer = random.nextInt(4);
-
-        answers.clear();
-
         int incorrectAnswer;
 
-        for (int i=0; i<4; i++) {
 
-            if (i == correctAnswer) {
-                answers.add(a + b);
-            }
-            else {
-                incorrectAnswer = random.nextInt(41);
+        Random r = new Random();
+        int Result = r.nextInt(4);
 
-                while (incorrectAnswer == a + b) {
-                    incorrectAnswer = random.nextInt(41);
+
+        switch (Result) {
+            case 1:
+                operator = " + ";
+                answers.clear();
+
+                for (int i = 0; i < 4; i++) {
+
+                    if (i == correctAnswer) {
+                        answers.add(a + b);
+                    } else {
+                        incorrectAnswer = random.nextInt(41);
+
+                        while (incorrectAnswer == a + b) {
+                            incorrectAnswer = random.nextInt(41);
+                        }
+                        answers.add(incorrectAnswer);
+                    }
+
+
                 }
-                answers.add(incorrectAnswer);
-            }
-        }
+                break;
 
+            case 2:
+                operator = " x ";
+                answers.clear();
+
+                for (int i = 0; i < 4; i++) {
+
+                    if (i == correctAnswer) {
+                        answers.add(a * b);
+                    } else {
+                        incorrectAnswer = random.nextInt(41);
+
+                        while (incorrectAnswer == a * b) {
+                            incorrectAnswer = random.nextInt(41);
+                        }
+                        answers.add(incorrectAnswer);
+                    }
+
+
+                }
+                break;
+
+            case 3:
+                operator = " - ";
+
+                answers.clear();
+
+                for (int i = 0; i < 4; i++) {
+
+                    if (i == correctAnswer) {
+                        answers.add(a - b);
+                    } else {
+                        incorrectAnswer = random.nextInt(41);
+
+                        while (incorrectAnswer == a - b) {
+                            incorrectAnswer = random.nextInt(41);
+                        }
+                        answers.add(incorrectAnswer);
+                    }
+
+                }
+                break;
+
+            case 4:
+                operator = " divide ";
+
+                answers.clear();
+
+                for (int i = 0; i < 4; i++) {
+
+                    if (i == correctAnswer) {
+                        answers.add(a / b);
+                    } else {
+                        incorrectAnswer = random.nextInt(41);
+
+                        while (incorrectAnswer == a / b) {
+                            incorrectAnswer = random.nextInt(41);
+                        }
+                        answers.add(incorrectAnswer);
+                    }
+
+                }
+                break;
+
+        }
+        sumView.setText(Integer.toString(a) + operator + Integer.toString(b));
         button0.setText(Integer.toString(answers.get(0)));
         button1.setText(Integer.toString(answers.get(1)));
         button2.setText(Integer.toString(answers.get(2)));
@@ -101,7 +174,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
 
 
     public void chooseAnswer(View view) {
@@ -120,8 +192,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
-
 
 
 
