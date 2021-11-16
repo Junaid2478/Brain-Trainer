@@ -2,6 +2,11 @@ package com.example.braintrainer;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
@@ -9,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -26,17 +32,24 @@ public class MainActivity extends AppCompatActivity {
     TextView pointsView;
     int numberOfQuestions = 0;
     TextView timerView;
-    int points = 0;
+    TextView highScoreTextView;
+    int points;
     Button playAgainButton;
     public String operator;
+
+
+    public void playAudio() {
+
+        MediaPlayer mplayer= MediaPlayer.create(MainActivity.this,R.raw.hurt);
+        mplayer.start();
+    }
 
     public void playAgain (View view) {
 
         points = 0;
         numberOfQuestions = 0;
-
         timerView.setText("30s");
-        pointsView.setText("0/0");
+        pointsView.setText("0/0"+ "\n");
         resultsView.setText("");
         playAgainButton.setVisibility(View.INVISIBLE);
         generateQuestion();
@@ -56,11 +69,13 @@ public class MainActivity extends AppCompatActivity {
 
                 playAgainButton.setVisibility(View.VISIBLE);
                 timerView.setText("0s");
+                highScoreTextView.setText("Score");
                 resultsView.setText("Your points:" + Integer.toString(points) +"/" + Integer.toString(numberOfQuestions));
 
 
             }
         }.start();
+        playAudio();
 
 
 
@@ -75,9 +90,7 @@ public class MainActivity extends AppCompatActivity {
         correctAnswer = random.nextInt(4);
         int incorrectAnswer;
 
-
-        Random r = new Random();
-        int Result = r.nextInt(4);
+        int Result = random.nextInt(5);
 
 
         switch (Result) {
@@ -145,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case 4:
-                operator = " divide ";
+                operator = " ÷ ";
 
                 answers.clear();
 
@@ -215,12 +228,12 @@ public class MainActivity extends AppCompatActivity {
         button2 = (Button) findViewById(R.id.button2);
         button3 = (Button) findViewById(R.id.button3);
 
+
         resultsView = (TextView) findViewById(R.id.resultTextView);
         pointsView = (TextView) findViewById(R.id.pointsTextView);
+        highScoreTextView = (TextView) findViewById(R.id.highScoreTextView);
         timerView = (TextView) findViewById(R.id.timerTextView);
         playAgainButton = (Button) findViewById(R.id.playAgainButton);
-
-
 
         playAgain(findViewById(R.id.playAgainButton));
 
